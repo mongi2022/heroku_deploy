@@ -33,11 +33,11 @@ export class EditPropertyComponent implements OnInit {
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.features = this.appService.getFeatures();
+    this.getFeaturedList()
     this.propertyTypes = this.appService.getPropertyTypes();
     this.propertyStatuses = this.appService.getPropertyStatuses();
-    this.cities = this.appService.getCities();
-    this.neighborhoods = this.appService.getNeighborhoods();
+    this.getCities();
+    this.getNeighborhoods();
     this.streets = this.appService.getStreets();   
 
     this.submitForm = this.fb.group({
@@ -83,7 +83,21 @@ export class EditPropertyComponent implements OnInit {
   ngOnDestroy() {
     this.sub.unsubscribe();
   } 
-
+  getFeaturedList(){
+    this.appService.getFeatureList().subscribe(data=>{
+      this.features=data
+    })
+  }
+  getCities(){
+    this.appService.getCities().subscribe(data=>{
+      this.cities=data
+    })
+  }
+  getNeighborhoods(){
+    this.appService.getNeighborhoods().subscribe(data=>{
+      this.neighborhoods=data
+    })
+  }
   public getPropertyById(id){
     this.appService.getPropertyById(id).subscribe(data=>{
       console.log(data)

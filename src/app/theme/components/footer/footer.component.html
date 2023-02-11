@@ -12,7 +12,7 @@
                 </div>
                 <form [formGroup]="subscribeForm" (ngSubmit)="onSubscribeFormSubmit(subscribeForm.value)" class="custom-form" fxLayout="row" fxFlex="100" fxFlex.gt-sm="42.4" ngClass.sm="mt-2" ngClass.xs="mt-2">
                     <mat-form-field appearance="outline" floatLabel="always" class="subscribe-input" fxFlex>
-                        <input matInput autocomplete="off" formControlName="email" placeholder="Your email address...">                      
+                        <input matInput autocomplete="off" formControlName="email" placeholder="Votre email...">                      
                     </mat-form-field>
                     <button mat-flat-button type="submit" class="subscribe-btn" color="primary">S'abonner</button>
                 </form>
@@ -39,7 +39,7 @@
                         </p>
                         <p fxLayout="row" fxLayoutAlign="start center" class="mt-1">
                             <mat-icon color="primary">schedule</mat-icon>
-                            <span class="mx-2">Mon - Sun / 9:00AM - 8:00PM</span>
+                            <span class="mx-2">{{todayNumber | date}}</span>
                         </p>
                         <app-social-icons [iconSize]="'lg'" fxLayout="row" fxLayoutAlign="start center" class="desc"></app-social-icons>                    
                     </div>

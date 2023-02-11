@@ -25,11 +25,14 @@ export class PropertyItemComponent implements OnInit {
     clickable: true
   };
   public settings: Settings;
+  statusList: any[];
   constructor(public appSettings:AppSettings, public appService:AppService) {
     this.settings = this.appSettings.settings;
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.getStatusProperties()
+  }
 
   ngAfterViewInit(){
     this.initCarousel();
@@ -78,9 +81,9 @@ export class PropertyItemComponent implements OnInit {
 
   public getStatusBgColor(status){
     switch (status) {
-      case 'For Sale':
+      case 'A vendre':
         return '#558B2F';  
-      case 'For Rent':
+      case 'A louer':
         return '#1E88E5'; 
       case 'Open House':
         return '#009688';
@@ -95,6 +98,14 @@ export class PropertyItemComponent implements OnInit {
     }
   }
 
+  public getStatusProperties(){
+    this.appService.getFeaturedProperties().subscribe(properties=>{
+      const res= this.property.propertyStatus
+      this.statusList=[res]
+      
+      
+    })
+  } 
 
   public initCarousel(){
     this.config = {

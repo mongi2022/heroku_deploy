@@ -11,7 +11,13 @@ export class AgentsComponent implements OnInit {
   constructor(public appService:AppService) { }
 
   ngOnInit() {
-    this.agents = this.appService.getAgents();
+   this.getAgents()
   }
 
+  getAgents(){
+    this.appService.getAgents().subscribe(data=>{
+      this.agents=data
+      
+      
+    })  }
 }

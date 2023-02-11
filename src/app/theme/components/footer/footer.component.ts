@@ -8,6 +8,7 @@ import { emailValidator } from '../../utils/app-validators';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+    todayNumber = Date.now();
   public lat: number = 33.8933;
   public lng: number = 10.1029
   public zoom: number = 12; 

@@ -8,13 +8,23 @@ import { AppService } from 'src/app/app.service';
   styleUrls: ['./clients.component.scss']
 })
 export class ClientsComponent implements OnInit {
-  public clients;
+  public clients:any;
   public config: SwiperConfigInterface = { };
   constructor(public appService:AppService) { }
 
   ngOnInit() {
-    this.clients = this.appService.getClients();
+   this.getClients()
   }
+  getClients(){
+     this.appService.getClients().subscribe(data=>{
+      this.clients=data
+      console.log(this.clients);
+      
+      
+    });
+  }
+  
+
 
   ngAfterViewInit(){
     this.config = {

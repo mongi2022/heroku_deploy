@@ -25,6 +25,7 @@ export class PropertyComponent implements OnInit {
   public config: SwiperConfigInterface = {}; 
   public config2: SwiperConfigInterface = {}; 
   private sub: any;
+  public featureList:any
   public property:Property; 
   public settings: Settings;  
   public embedVideo: any;
@@ -34,6 +35,8 @@ export class PropertyComponent implements OnInit {
   public mortgageForm: UntypedFormGroup;
   public monthlyPayment:any;
   public contactForm: UntypedFormGroup;
+  ids:any [];
+  agents: any[];
   constructor(public appSettings:AppSettings, 
               public appService:AppService, 
               private activatedRoute: ActivatedRoute, 
@@ -46,6 +49,9 @@ export class PropertyComponent implements OnInit {
     this.sub = this.activatedRoute.params.subscribe(params => {   
       this.getPropertyById(params['id']); 
     });
+    this.getAllAgents()
+
+  
     this.getRelatedProperties();
     this.getFeaturedProperties();
     this.getAgent(1);
@@ -81,6 +87,8 @@ export class PropertyComponent implements OnInit {
   public getPropertyById(id){
     this.appService.getPropertyById(id).subscribe(data=>{
       this.property = data;  
+      console.log(data);
+      
       this.embedVideo = this.embedService.embed(this.property.videos[1].link);
       setTimeout(() => { 
         this.config.observer = true;
@@ -198,13 +206,28 @@ export class PropertyComponent implements OnInit {
   public getFeaturedProperties(){
     this.appService.getFeaturedProperties().subscribe(properties=>{
       this.featuredProperties = properties.slice(0,3); 
+      const res= this.property.features.map((x:any)=>x.desc)
+      this.featureList=res
+      
     })
   } 
-
-  public getAgent(agentId:number = 1){
-    var ids = [1,2,3,4,5]; //agent ids 
-    agentId = ids[Math.floor(Math.random()*ids.length)]; //random agent id
-    this.agent = this.appService.getAgents().filter(agent=> agent.id == agentId)[0]; 
+  public getAllAgents( ){
+     this.appService.getAgents().subscribe(data=>{
+       this.agents =  data
+        this.ids=data.map(x=>x.id)
+      
+      
+      })
+   }
+  public getAgent(agentId:number ){
+    
+   var ids = [3,4,5,6]; //agent ids 
+    
+    
+    agentId = ids[Math.floor(Math.random()*ids.length)]; //random agent id 
+    this.appService.getAgentById(agentId).subscribe(data=>{
+      this.agent =  data
+     })
   }
 
   public onContactFormSubmit(values:Object){

@@ -4,8 +4,8 @@
       <div fxLayout="row" fxLayoutAlign="center center" class="my-3">
           <mat-card [style.max-width.px]="500">
             <div fxLayout="column" fxLayoutAlign="center center" class="text-center">  
-              <h1 class="uppercase">Register</h1>  
-              <a mat-button routerLink="/login" color="accent" class="w-100">Already have an account? Sign in!</a>  
+              <h1 class="uppercase">S'enregistrer</h1>  
+              <a mat-button routerLink="/login" color="accent" class="w-100">Vous avez déjà un compte? Se connecter!</a>  
             </div>
             <form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit(registerForm.value)"> 
                 <mat-form-field  appearance="outline" class="w-100 mt-2">
@@ -34,7 +34,7 @@
                 </mat-form-field>
                 <mat-form-field  appearance="outline" class="w-100 mt-1">
                   <mat-icon matPrefix class="mr-1 text-muted">lock</mat-icon>
-                  <mat-label>Password</mat-label>
+                  <mat-label>Mot de passe</mat-label>
                   <input matInput placeholder="Password" formControlName="password" type="password" minlength="6" required [type]="hide ? 'password' : 'text'">
                   <mat-error *ngIf="registerForm.controls.password.errors?.required">Password is required</mat-error>
                   <mat-error *ngIf="registerForm.controls.password.hasError('minlength')">Password isn't long enough, minimum of 6 characters</mat-error>
@@ -44,7 +44,7 @@
                 </mat-form-field> 
                 <mat-form-field  appearance="outline" class="w-100 mt-1">
                   <mat-icon matPrefix class="mr-1 text-muted">lock</mat-icon>
-                  <mat-label>Confirm Password</mat-label>
+                  <mat-label>Confirmer mot de passe</mat-label>
                   <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password" required [type]="hide ? 'password' : 'text'">
                   <mat-error *ngIf="registerForm.controls.confirmPassword.errors?.required">Confirm Password is required</mat-error>
                   <mat-error *ngIf="registerForm.controls.confirmPassword.hasError('mismatchedPasswords')">Passwords do not match</mat-error>
@@ -52,10 +52,10 @@
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
                 </mat-form-field> 
-                <mat-slide-toggle formControlName="receiveNewsletter" class="my-2">Receive Newsletter</mat-slide-toggle>
+                <mat-slide-toggle formControlName="receiveNewsletter" class="my-2">Recevoir Newsletter</mat-slide-toggle>
                 <div class="text-center mt-2"> 
                     <button mat-raised-button color="accent" class="uppercase" type="submit">
-                        Create an Account
+                        Créer un compte
                     </button>
                 </div> 
             </form>

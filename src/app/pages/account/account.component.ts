@@ -14,11 +14,11 @@ export class AccountComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;
   public sidenavOpen:boolean = true;
   public links = [ 
-    { name: 'Profile', href: 'profile', icon: 'person' },  
-    { name: 'My Properties', href: 'my-properties', icon: 'view_list' },
-    { name: 'Favorites', href: 'favorites', icon: 'favorite' }, 
-    { name: 'Submit Property', href: '/submit-property', icon: 'add_circle' },  
-    { name: 'Logout', href: '/login', icon: 'power_settings_new' },    
+    { name: 'Profil', href: 'profile', icon: 'person' },  
+    { name: 'Mes Biens', href: 'my-properties', icon: 'view_list' },
+    { name: 'Favoris', href: 'favorites', icon: 'favorite' }, 
+    { name: 'Ajouter Bien', href: '/submit-property', icon: 'add_circle' },  
+    { name: 'Se déconnecter', href: '/login', icon: 'power_settings_new' },    
   ]; 
   constructor(public router:Router) { }
 

@@ -5,7 +5,7 @@
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                 <mat-label>Catégorie</mat-label> 
-                <mat-select placeholder="Select Category" formControlName="propertyType">
+                <mat-select placeholder="Select Categorie" formControlName="propertyType">
                     <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType">
                         {{propertyType.name}}
                     </mat-option>
@@ -70,7 +70,7 @@
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                     <mat-label>Région</mat-label>
-                    <mat-select placeholder="Select Neighborhood..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
+                    <mat-select placeholder="Select Région..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
                         <mat-option *ngFor="let neighborhood of neighborhoods | filterNeighborhoods: form.get('city').value?.id" [value]="neighborhood">
                             {{neighborhood.name}}
                         </mat-option>
@@ -78,16 +78,7 @@
                 </mat-form-field>
             </div> 
 
-          <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
-                <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Rue</mat-label>
-                    <mat-select placeholder="Select Street..." formControlName="street" multiple>
-                        <mat-option *ngFor="let street of streets | filterStreets : { neighborhoods:form.get('neighborhood').value, cityId:form.get('city').value?.id } " [value]="street">
-                            {{street.name}}
-                        </mat-option>
-                    </mat-select> 
-                </mat-form-field>
-            </div> 
+
     
           <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bedrooms">
     
@@ -108,7 +99,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? '' : 'Chambres à'}}</mat-label>
-                            <mat-select placeholder="To" formControlName="to">
+                            <mat-select placeholder="A" formControlName="to">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -125,7 +116,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? 'Chambres' : 'Chambres de'}}</mat-label>
-                            <mat-select placeholder="From" formControlName="from">
+                            <mat-select placeholder="De" formControlName="from">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -138,7 +129,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? '' : 'Chambres à'}}</mat-label>
-                            <mat-select placeholder="To" formControlName="to">
+                            <mat-select placeholder="A" formControlName="to">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -155,7 +146,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? 'Garages' : 'Garages de'}}</mat-label>
-                            <mat-select placeholder="From" formControlName="from">
+                            <mat-select placeholder="De" formControlName="from">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -168,7 +159,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? '' : 'Garages à'}}</mat-label>
-                            <mat-select placeholder="To" formControlName="to">
+                            <mat-select placeholder="A" formControlName="to">
                                 <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
                                     {{number}}
                                 </mat-option>
@@ -185,7 +176,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? 'Surface' : 'Surface De'}}</mat-label>
-                            <input matInput autocomplete="off" placeholder="From" formControlName="from" type="text" onlyNumber>                  
+                            <input matInput autocomplete="off" placeholder="De" formControlName="from" type="text" onlyNumber>                  
                         </mat-form-field>
                     </div>
                     <div fxFlex="10" class="text-center" [class.pt-2]="variant == 2">
@@ -194,7 +185,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? '' : 'Surface à'}}</mat-label>
-                            <input matInput autocomplete="off" placeholder="To" formControlName="to" type="text" onlyNumber>                  
+                            <input matInput autocomplete="off" placeholder="A" formControlName="to" type="text" onlyNumber>                  
                         </mat-form-field>
                     </div>
                 </div> 
@@ -207,7 +198,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? 'Année de construction' : 'Année de construction de'}}</mat-label>
-                            <input matInput autocomplete="off" placeholder="From" formControlName="from" type="text" onlyNumber maxlength="4">                  
+                            <input matInput autocomplete="off" placeholder="De" formControlName="from" type="text" onlyNumber maxlength="4">                  
                         </mat-form-field>
                     </div>
                     <div fxFlex="10" class="text-center" [class.pt-2]="variant == 2">
@@ -216,7 +207,7 @@
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
                             <mat-label>{{(variant == 1) ? '' : 'Année de construction à'}}</mat-label>
-                            <input matInput autocomplete="off" placeholder="To" formControlName="to" type="text" onlyNumber maxlength="4">                  
+                            <input matInput autocomplete="off" placeholder="A" formControlName="to" type="text" onlyNumber maxlength="4">                  
                         </mat-form-field>
                     </div>
                 </div>  

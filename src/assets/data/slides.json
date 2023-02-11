@@ -1,7 +1,7 @@
 [
     { 
-        "title": "Modern and quirky flat", 
-        "location": "611 W 180th St, New York, NY 10033, USA",         
+        "title": "Appartement moderne et original", 
+        "location":  "LE BARDO, TUNIS",         
         "priceDollar": {
             "sale": 1300000,
             "rent": null
@@ -13,8 +13,8 @@
         "image": "assets/images/props/flat-1/1-big.jpg" 
     },
     { 
-        "title": "Comfortable family house", 
-        "location": "3rd Ave & James St, Seattle, WA 98104, USA", 
+        "title": "Maison familiale confortable", 
+        "location": "MORNAG, BEN AROUS", 
         "priceDollar": {
             "sale": 2550000,
             "rent": null
@@ -26,8 +26,8 @@
         "image": "assets/images/props/house-1/5-big.jpg"
     },
     { 
-        "title": "Luxury office space", 
-        "location": "230 W 55th St, New York, NY 10019, USA",
+        "title": "Appartements de luxe", 
+        "location": "JARDIN DE CARTHAGE, TUNIS",
         "priceDollar": {
             "sale": 2500000,
             "rent": null
@@ -39,8 +39,8 @@
         "image": "assets/images/props/office-2/6-big.jpg"
     },
     { 
-        "title": "Centrally located apartment", 
-        "location": "1627 Vine St, Los Angeles, CA 90028, USA", 
+        "title": "Appartement situé au centre", 
+        "location": "DJERBA-HOUMT SOUK, MÉDENINE", 
         "priceDollar": {
             "sale": null,
             "rent": 5600

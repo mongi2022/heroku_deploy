@@ -38,8 +38,8 @@
                     <mat-chip-list>
                         <mat-chip color="primary" selected="true" class="w-100">
                             <h3 *ngIf="settings.currency == 'TND'" class="w-100 text-center">
-                                <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'TND' : 'symbol' : '1.0'}}</span>
-                                <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'TND' : 'symbol' : '1.0'}} /mois</span>
+                                <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'TND ' : 'symbol' : '1.0'}}</span>
+                                <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'TND ' : 'symbol' : '1.0'}} /mois</span>
                             </h3>
                             <h3 *ngIf="settings.currency == 'EUR'" class="w-100 text-center">
                                 <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
@@ -72,12 +72,12 @@
                               <span *ngFor="let neighborhood of property.neighborhood; let last=last" [class.list-item]="property.neighborhood.length > 1" [class.last]="last">{{neighborhood}}</span>
                             </div>
                         </div>
-                        <div fxLayout="row" class="item">
+                  <!--       <div fxLayout="row" class="item">
                             <span>Rue:</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let street of property.street; let last=last" [class.list-item]="property.street.length > 1" [class.last]="last">{{street}}</span>
                             </div>
-                        </div>
+                        </div> -->
                         <div fxLayout="row" class="item">
                           <span>Chambres:</span>
                           <span>{{property.bedrooms}}</span>

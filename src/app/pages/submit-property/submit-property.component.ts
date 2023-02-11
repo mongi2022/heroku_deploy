@@ -30,11 +30,11 @@ export class SubmitPropertyComponent implements OnInit {
               private ngZone: NgZone) { }
 
   ngOnInit() {
-    this.features = this.appService.getFeatures();  
+    this.getFeaturedList() 
     this.propertyTypes = this.appService.getPropertyTypes();
     this.propertyStatuses = this.appService.getPropertyStatuses();
-    this.cities = this.appService.getCities();
-    this.neighborhoods = this.appService.getNeighborhoods();
+    this.getCities();
+    this.getNeighborhoods();
     this.streets = this.appService.getStreets();  
 
     this.submitForm = this.fb.group({
@@ -73,7 +73,16 @@ export class SubmitPropertyComponent implements OnInit {
     this.setCurrentPosition();
     this.placesAutocomplete();
   }
-
+  getCities(){
+     this.appService.getCities().subscribe(data=>{
+    this.cities=data
+  })
+  }
+  getNeighborhoods(){
+    this.appService.getNeighborhoods().subscribe(data=>{
+      this.neighborhoods=data
+    })
+  }
   public addProperty(){
    const info={...this.submitForm}
    console.log(info.controls.additional);
@@ -351,6 +360,10 @@ export class SubmitPropertyComponent implements OnInit {
     const features = this.submitForm.controls.media.get('additionalFeatures') as UntypedFormArray;
     features.removeAt(index);
   } 
-  
+  getFeaturedList(){
+    this.appService.getFeatureList().subscribe(data=>{
+      this.features=data
+    })
+  }
 
 }

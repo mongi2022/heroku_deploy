@@ -18,10 +18,15 @@ export class TestimonialsComponent implements OnInit {
   constructor(public appService:AppService) { }
 
   ngOnInit() {
-    this.testimonials = this.appService.getTestimonials(); 
+this.getTestimonials()
   }
-
+  getTestimonials(){
+    this.appService.getTestimonials().subscribe(data=>{
+      this.testimonials=data
+    }); 
+  }
   ngAfterViewInit(){
+
     this.config = {
       observer: true,
       slidesPerView: 1,

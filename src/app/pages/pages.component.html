@@ -31,9 +31,9 @@
 
         <app-footer></app-footer>
        
-        <div fxLayout="row" fxLayoutAlign="center center" class="options-icon" (click)="options.toggle()">
+       <!--  <div fxLayout="row" fxLayoutAlign="center center" class="options-icon" (click)="options.toggle()">
             <mat-icon>settings</mat-icon>
-        </div>
+        </div> -->
         
         <div *ngIf="showBackToTop" fxLayout="row" fxLayoutAlign="center center" class="back-to-top" (click)="scrollToTop()">
             <mat-icon>arrow_upward</mat-icon>
@@ -43,7 +43,7 @@
     
     <mat-sidenav #options position="end" class="options" autoFocus="false">
         <div fxLayout="row" fxLayoutAlign="space-between center" class="op-header mat-elevation-z1">
-            <h2>Settings</h2>
+            <h2>Paramètres</h2>
             <button mat-icon-button (click)="options.toggle()" color="accent">
                 <mat-icon>close</mat-icon>
             </button>

@@ -169,7 +169,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    { path: '', component: _landing_component__WEBPACK_IMPORTED_MODULE_1__.LandingComponent, pathMatch: 'full' }
+    { /* path: '', component: LandingComponent, pathMatch: 'full' */}
 ];
 let LandingModule = class LandingModule {
 };

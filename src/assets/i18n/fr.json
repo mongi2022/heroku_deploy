@@ -14,10 +14,9 @@
   "NAV": {  
     "HOME": "Accueil", 
     "PROPERTIES": "Biens",  
-    "PAGES": "Des pages", 
+    "PAGES": "Notre Réseau", 
     "AGENTS": "Agents",
     "AGENT": "Agent", 
-    "FAQS": "Faqs",
     "PRICING": "Tarification",
     "TERMS_CONDITIONS": "Termes et conditions",
     "LANDING": "Landing", 

@@ -3,7 +3,7 @@
         <div class="swiper-wrapper h-100">      
             <div *ngFor="let slide of slides;" class="swiper-slide">
                 <div [attr.data-background]="slide.image" class="slide-item swiper-lazy">
-                    <div class="swiper-lazy-preloader"></div>
+                    <div class="swiper-lazy"></div>
                 </div>
             </div>
         </div>     
@@ -19,8 +19,8 @@
                 </p> 
                 <button mat-raised-button color="primary" class="price">                        
                     <span *ngIf="settings.currency == 'TND'" class="price">
-                        <span *ngIf="currentSlide.priceDollar.sale">{{currentSlide.priceDollar.sale | currency : 'TND' : 'symbol' : '1.0'}}</span>
-                        <span *ngIf="currentSlide.priceDollar.rent">{{currentSlide.priceDollar.rent | currency : 'TND' : 'symbol' : '1.0'}} /month</span>
+                        <span *ngIf="currentSlide.priceDollar.sale">{{currentSlide.priceDollar.sale | currency : 'TND ' : 'symbol' : '1.0'}}</span>
+                        <span *ngIf="currentSlide.priceDollar.rent">{{currentSlide.priceDollar.rent | currency : 'TND ' : 'symbol' : '1.0'}} / mois</span>
                     </span>
                     <span *ngIf="settings.currency == 'EUR'" class="price">
                         <span *ngIf="currentSlide.priceEuro.sale">{{currentSlide.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>

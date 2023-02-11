@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./favorites.component.scss']
 })
 export class FavoritesComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'image', 'title', 'actions' ];
+  displayedColumns: string[] = ['id', 'image', 'titre', 'actions' ];
   dataSource: MatTableDataSource<Property>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;

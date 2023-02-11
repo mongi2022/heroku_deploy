@@ -92,8 +92,12 @@ export class AgentComponent implements OnInit {
   } 
 
   public getAgentById(id){
-    this.agent = this.appService.getAgents().filter(agent=> agent.id == id)[0]; 
-  }
+  //  this.agent = this.appService.getAgents().filter(agent=> agent.id == id)[0]; 
+  this.appService.getAgentById(id).subscribe(data=>{
+   this.agent=data
+    
+  })
+}
    
 
   public getProperties(){   
@@ -102,7 +106,7 @@ export class AgentComponent implements OnInit {
       if(result.data.length == 0){
         this.properties.length = 0;
         this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
-        this.message = 'Pas de resultats';
+        this.message = 'No Results Found';
         return false;
       } 
       this.properties = result.data; 

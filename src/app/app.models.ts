@@ -86,4 +86,9 @@ export class Pagination {
                 public total: number,
                 public totalPages: number){ }
 }
-
+export class Testimonial {
+    constructor(    text: string ,
+        author:string,
+        position: string,
+        image: string){ }
+}

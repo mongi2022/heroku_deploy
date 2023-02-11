@@ -18,7 +18,7 @@ export class PropertiesSearchComponent implements OnInit {
   public form: UntypedFormGroup;
   public propertyTypes = [];
   public propertyStatuses = [];
-  public cities = [];
+  public cities : any[];
   public neighborhoods = [];
   public streets = [];
   public features = [];
@@ -29,12 +29,14 @@ export class PropertiesSearchComponent implements OnInit {
     if(this.vertical){
       this.showMore = true;
     };
+    this.getFeaturedList()
     this.propertyTypes = this.appService.getPropertyTypes();
     this.propertyStatuses = this.appService.getPropertyStatuses();
-    this.cities = this.appService.getCities();
-    this.neighborhoods = this.appService.getNeighborhoods();
-    this.streets = this.appService.getStreets();
-    this.features = this.appService.getFeatures();
+    this.getCities();
+    
+   // this.getNeighborhoods();
+/*     this.streets = this.appService.getStreets();
+ */    
     this.form = this.fb.group({
       propertyType: null,
       propertyStatus: null, 
@@ -72,6 +74,13 @@ export class PropertiesSearchComponent implements OnInit {
     this.onSearchChange.emit(this.form);
   }
  
+  getNeighborhoods(id:number){
+    this.appService.getNeighborhoodByCityId(id).subscribe(data=>{
+      this.neighborhoods=data
+      
+    })
+  }
+
   public buildFeatures() {
     const arr = this.features.map(feature => { 
       return this.fb.group({
@@ -83,7 +92,12 @@ export class PropertiesSearchComponent implements OnInit {
     return this.fb.array(arr);
   }
   
-
+  getCities(){
+    this.appService.getCities().subscribe(data=>{
+      this.cities=data
+      
+    })
+  }
   ngOnChanges(){ 
     if(this.removedSearchField){ 
       if(this.removedSearchField.indexOf(".") > -1){
@@ -142,10 +156,12 @@ export class PropertiesSearchComponent implements OnInit {
 
   public onSelectCity(){
     this.form.controls['neighborhood'].setValue(null, {emitEvent: false});
-    this.form.controls['street'].setValue(null, {emitEvent: false});
+   this.getNeighborhoods(this.form.controls['city'].value.id)
+   
+    // this.form.controls['street'].setValue(null, {emitEvent: false});
   }
   public onSelectNeighborhood(){
-    this.form.controls['street'].setValue(null, {emitEvent: false});
+  // this.form.controls['street'].setValue(null, {emitEvent: false});
   }
 
   public getAppearance(){
@@ -154,6 +170,12 @@ export class PropertiesSearchComponent implements OnInit {
   public getFloatLabel(){
     return (this.variant == 1) ? 'always' : '';
   }
+  getFeaturedList(){
+    this.appService.getFeatureList().subscribe(data=>{
 
+     this.features=data
+
+    })
+  }
 
 }

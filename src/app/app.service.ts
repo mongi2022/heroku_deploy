@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Property, Location } from './app.models';
+import { Property, Location, Testimonial } from './app.models';
 import { AppSettings } from './app.settings';
 import { isPlatformBrowser } from '@angular/common';
 import { environment } from 'src/environments/environment';
@@ -22,6 +22,7 @@ export class Data {
 @Injectable({
   providedIn: 'root'
 })
+
 export class AppService {
   public Data = new Data(
     [], // properties
@@ -29,7 +30,7 @@ export class AppService {
     [], // favorites
     []  // locations
   )
-
+ 
   public url = environment.url + '/assets/data/'; 
   public apiKey = 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I';
   
@@ -44,31 +45,26 @@ export class AppService {
  /*  public getProperties(): Observable<Property[]>{
     return this.http.get<Property[]>(this.url + 'properties.json');
   } */
-
+  public getProperties(): Observable<Property[]>{
+    return this.http.get<Property[]>('http://localhost:3000/property');
+  }
   public addProperties(property:any): Observable<Property>{
     return this.http.post<any>('http://localhost:3000/property',property);
   } 
   public addFeatures(feature:any): Observable<any>{
     return this.http.post<any>('http://localhost:3000/features',feature);
   } 
-
+  public getPropertyById(id): Observable<any>{
+    return this.http.get<any>('http://localhost:3000/property/' + id);
+  }
   
 
 /*   public getPropertyById(id): Observable<Property>{
     return this.http.get<Property>(this.url + 'property-' + id + '.json');
   } */
-    
-  public getProperties(): Observable<Property[]>{
-    return this.http.get<Property[]>(this.url + 'properties.json');
-  }
-
-  public getPropertyById(id): Observable<Property>{
-    return this.http.get<Property>(this.url + 'property-' + id + '.json');
-  }
-
 
   public getFeaturedProperties(): Observable<Property[]>{
-    return this.http.get<Property[]>(this.url + 'featured-properties.json');
+    return this.http.get<any>('http://localhost:3000/property');
   } 
 
   public getRelatedProperties(): Observable<Property[]>{
@@ -167,30 +163,18 @@ export class AppService {
     ]
   }
 
-  public getCities(){
-    return [ 
-      { id: 1, name: 'New York' },
-      { id: 2, name: 'Chicago' },
-      { id: 3, name: 'Los Angeles' },
-      { id: 4, name: 'Seattle' } 
-    ]
+  public getCities():Observable<any>{
+    return this.http.get<any>('http://localhost:3000/ville');
+  }
+  public getNeighborhoodByCityId(id:number){
+    return this.http.get<any>(`http://localhost:3000/neighborhood/region/${id}`);
+
   }
 
+
   public getNeighborhoods(){
-    return [      
-      { id: 1, name: 'Astoria', cityId: 1 },
-      { id: 2, name: 'Midtown', cityId: 1 },
-      { id: 3, name: 'Chinatown', cityId: 1 }, 
-      { id: 4, name: 'Austin', cityId: 2 },
-      { id: 5, name: 'Englewood', cityId: 2 },
-      { id: 6, name: 'Riverdale', cityId: 2 },      
-      { id: 7, name: 'Hollywood', cityId: 3 },
-      { id: 8, name: 'Sherman Oaks', cityId: 3 },
-      { id: 9, name: 'Highland Park', cityId: 3 },
-      { id: 10, name: 'Belltown', cityId: 4 },
-      { id: 11, name: 'Queen Anne', cityId: 4 },
-      { id: 12, name: 'Green Lake', cityId: 4 }      
-    ]
+    return this.http.get<any>('http://localhost:3000/neighborhood');
+
   }
 
   public getStreets(){
@@ -223,7 +207,12 @@ export class AppService {
   }
 
   public getFeatures(){
-    return [ 
+    return [
+
+
+
+    
+
       { id: 1, name: 'Meublé', selected: false },
       { id: 2, name: 'Climatisé', selected: false },
       { id: 3, name: 'Chauffage Centrale', selected: false },
@@ -538,149 +527,31 @@ export class AppService {
 
 
 
-  public getTestimonials(){
-    return [
-        { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Mr. Adam Sandler', 
-            position: 'General Director', 
-            image: 'assets/images/profile/adam.jpg' 
-        },
-        { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Ashley Ahlberg', 
-            position: 'Housewife', 
-            image: 'assets/images/profile/ashley.jpg' 
-        },
-        { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Bruno Vespa', 
-            position: 'Blogger', 
-            image: 'assets/images/profile/bruno.jpg' 
-        },
-        { 
-            text: 'Donec molestie turpis ut mollis efficitur. Nam fringilla libero vel dictum vulputate. In malesuada, ligula non ornare consequat, augue nibh luctus nisl, et lobortis justo ipsum nec velit. Praesent lacinia quam ut nulla gravida, at viverra libero euismod. Sed tincidunt tempus augue vitae malesuada. Vestibulum eu lectus nisi. Aliquam erat volutpat.', 
-            author: 'Mrs. Julia Aniston', 
-            position: 'Marketing Manager', 
-            image: 'assets/images/profile/julia.jpg' 
-        }
-    ];
+  public getTestimonials():Observable<Testimonial[]>{
+    return this.http.get<Testimonial[]>('http://localhost:3000/testimonial');
+
+  }
+
+
+  public getFeatureList():Observable<any[]>{
+    return this.http.get<any[]>('http://localhost:3000/featurelist');
+
   }
 
   public getAgents(){
-    return [        
-        { 
-            id: 1,
-            fullName: 'Lusia Manuel',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'Barsha technology',
-            email: 'contact@barsha.io',
-            phone: '+21651860088',
-            social: {
-              facebook: 'lusia',
-              twitter: 'lusia',
-              linkedin: 'lusia',
-              instagram: 'lusia',
-              website: 'https://barsha.io'
-            },
-            ratingsCount: 6,
-            ratingsValue: 480,
-            image: 'assets/images/agents/a-1.jpg' 
-        },
-        { 
-            id: 2,
-            fullName: 'Andy Warhol',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'Barsha technology',
-            email: 'contact@barsha.io',
-            phone: '+21651860088',
-            social: {
-              facebook: '',
-              twitter: '',
-              linkedin: '',
-              instagram: '',
-              website: 'https://barsha.io'
-            },
-            ratingsCount: 4,
-            ratingsValue: 400,
-            image: 'assets/images/agents/a-2.jpg' 
-        },        
-        { 
-            id: 3,
-            fullName: 'Tereza Stiles',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'Barsha technology',
-            email: 'contact@barsha.io',
-            phone: '+21651860088',
-            social: {
-              facebook: '',
-              twitter: '',
-              linkedin: '',
-              instagram: '',
-              website: 'https://barsha.io'
-            },
-            ratingsCount: 4,
-            ratingsValue: 380,
-            image: 'assets/images/agents/a-3.jpg' 
-        },
-        { 
-          id: 4,
-          fullName: 'Michael Blair',
-          desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-          organization: 'Barsha technology',
-          email: 'contact@barsha.io',
-          phone: '+21651860088',
-          social: {
-            facebook: '',
-            twitter: '',
-            linkedin: '',
-            instagram: '',
-            website: 'https://barsha.io'
-          },
-          ratingsCount: 6,
-          ratingsValue: 480,
-          image: 'assets/images/agents/a-4.jpg'  
-        },
-        { 
-            id: 5,
-            fullName: 'Michelle Ormond',
-            desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',            
-            organization: 'Barsha technology',
-            email: 'contact@barsha.io',
-            phone: '+21651860088',
-            social: {
-              facebook: '',
-              twitter: '',
-              linkedin: '',
-              instagram: '',
-              website: 'https://barsha.io'
-            },
-            ratingsCount: 6,
-            ratingsValue: 480, 
-            image: 'assets/images/agents/a-5.jpg' 
-        }
-    ];
+    return this.http.get<any[]>('http://localhost:3000/agent');
+    
+  }
+  public getAgentById(id:number){
+    return this.http.get<any[]>(`http://localhost:3000/agent/${id}`);
+    
+  }
+  public getClients():Observable<any[]>{
+    return this.http.get<any[]>('http://localhost:3000/client');
+
   }
 
 
-
-  public getClients(){
-    return [  
-        { name: 'aloha', image: 'assets/images/clients/aloha.png' },
-        { name: 'dream', image: 'assets/images/clients/dream.png' },  
-        { name: 'congrats', image: 'assets/images/clients/congrats.png' },
-        { name: 'best', image: 'assets/images/clients/best.png' },
-        { name: 'original', image: 'assets/images/clients/original.png' },
-        { name: 'retro', image: 'assets/images/clients/retro.png' },
-        { name: 'king', image: 'assets/images/clients/king.png' },
-        { name: 'love', image: 'assets/images/clients/love.png' },
-        { name: 'the', image: 'assets/images/clients/the.png' },
-        { name: 'easter', image: 'assets/images/clients/easter.png' },
-        { name: 'with', image: 'assets/images/clients/with.png' },
-        { name: 'special', image: 'assets/images/clients/special.png' },
-        { name: 'bravo', image: 'assets/images/clients/bravo.png' }
-    ];
-  }
 
 
 }
